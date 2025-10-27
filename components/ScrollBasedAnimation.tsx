@@ -1,21 +1,17 @@
 "use client";
 
 import React, { useRef, useEffect, useState, ReactNode } from "react";
-import { motion, useAnimation, AnimationControls } from "framer-motion";
+import { motion, useAnimation, Variants } from "framer-motion";
 
 interface ScrollBasedAnimationProps {
   children: ReactNode;
-  threshold?: number; // how much of the element should be visible before animation starts
-  delay?: number; // animation delay
-  duration?: number; // animation duration
-  offset?: number; // how far it starts from
-  direction?: "up" | "down" | "left" | "right"; // animation direction
+  threshold?: number;
+  delay?: number;
+  duration?: number;
+  offset?: number;
+  direction?: "up" | "down" | "left" | "right";
 }
 
-/**
- * A reusable scroll-based reveal animation component.
- * Triggers when the element enters the viewport.
- */
 const ScrollBasedAnimation: React.FC<ScrollBasedAnimationProps> = ({
   children,
   threshold = 0.2,
@@ -25,7 +21,7 @@ const ScrollBasedAnimation: React.FC<ScrollBasedAnimationProps> = ({
   direction = "up",
 }) => {
   const ref = useRef<HTMLDivElement | null>(null);
-  const controls: AnimationControls = useAnimation();
+  const controls = useAnimation();
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -65,7 +61,8 @@ const ScrollBasedAnimation: React.FC<ScrollBasedAnimationProps> = ({
     }
   };
 
-  const variants = {
+  // Properly typed variants
+  const variants: Variants = {
     hidden: { opacity: 0, ...getOffset() },
     visible: {
       opacity: 1,
