@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import ScrollAnimation from "../../components/ScrollBasedAnimation"; // optional for scroll animation
+import ScrollAnimation from "../../../components/ScrollBasedAnimation"; // optional for scroll animation
 import Image from "next/image";
 
 export default function LoginPage() {
