@@ -10,23 +10,33 @@ interface AdminNavbarProps {
 export default function AdminNavbar({ open, setOpen }: AdminNavbarProps) {
   return (
     <header className="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-4 shadow-sm">
-      {/* Hamburger button for mobile */}
-      <button
-        className="md:hidden text-black p-2 hover:bg-red-600 transition rounded"
-        onClick={() => setOpen(!open)}
-      >
-        {open ? <X /> : <Menu />}
-      </button>
+      <div className="flex items-center gap-3">
+        {/* Hamburger button for mobile */}
+        <button
+          className="md:hidden text-black p-2 hover:bg-red-600 transition rounded"
+          onClick={() => setOpen(!open)}
+        >
+          {open ? <X /> : <Menu />}
+        </button>
 
-      {/* Title */}
-      <h1 className="hidden text-lg md:block font-bold text-black">Admin Dashboard</h1>
+        {/* Title - Show abbreviated version on mobile */}
+        <h1 className="text-lg md:text-xl font-bold text-black truncate">
+          <span className="md:hidden">Admin</span>
+          <span className="hidden md:inline">Admin Dashboard</span>
+        </h1>
+      </div>
 
       {/* Right side icons */}
-      <div className="flex items-center gap-4">
-        <button className="text-black hover:text-red-600 transition"><User/></button>
-        <button className="text-black hover:text-red-600 transition"><Bell/></button>
-        <button className="text-black hover:text-red-600 transition"><LogOut/></button>
-
+      <div className="flex items-center gap-2 md:gap-4">
+        <button className="text-black hover:text-red-600 transition p-1 md:p-0">
+          <User className="h-5 w-5 md:h-6 md:w-6"/>
+        </button>
+        <button className="text-black hover:text-red-600 transition p-1 md:p-0">
+          <Bell className="h-5 w-5 md:h-6 md:w-6"/>
+        </button>
+        <button className="text-black hover:text-red-600 transition p-1 md:p-0">
+          <LogOut className="h-5 w-5 md:h-6 md:w-6"/>
+        </button>
       </div>
     </header>
   );

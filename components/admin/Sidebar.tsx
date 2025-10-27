@@ -1,6 +1,6 @@
 "use client";
 
-import { Home, Users, BarChart2, Settings, LogOut, X } from "lucide-react";
+import { Home, BarChart2,Mic, Settings,Play, LogOut, X,Newspaper } from "lucide-react";
 import Image from "next/image";
 
 interface SidebarProps {
@@ -11,8 +11,10 @@ interface SidebarProps {
 export default function Sidebar({ open, setOpen }: SidebarProps) {
   const menuItems = [
     { name: "Dashboard", icon: <Home />, path: "/admin" },
-    { name: "Users", icon: <Users />, path: "/admin/users" },
     { name: "Analytics", icon: <BarChart2 />, path: "/admin/analytics" },
+    { name: "News", icon: <Newspaper />, path: "/admin/news" },
+    { name: "Videos", icon: <Play />, path: "/admin/videos" },
+    { name: "Podcasts", icon: <Mic />, path: "/admin/podcasts" },
     { name: "Settings", icon: <Settings />, path: "/admin/settings" },
     { name: "Logout", icon: <LogOut />, path: "/logout" },
   ];
@@ -30,7 +32,7 @@ export default function Sidebar({ open, setOpen }: SidebarProps) {
       <aside
         className={`fixed top-0 left-0 h-full w-full bg-black text-white z-30 flex flex-col transition-transform duration-300
           md:relative md:translate-x-0
-          ${open ? "translate-x-0 w-58" : "-translate-x-full md:w-58"}
+          ${open ? "translate-x-0 w-64" : "-translate-x-full md:w-64"}
         `}
       >
         {/* Logo & Close Button */}
