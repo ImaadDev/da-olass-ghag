@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import ScrollBasedAnimation from "../../components/ScrollBasedAnimation";
+import ScrollBasedAnimation from "../../../components/ScrollBasedAnimation";
 
 const technologyNews = [
   {
