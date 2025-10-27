@@ -1,6 +1,6 @@
 "use client";
 
-import ScrollBasedAnimation from "../../components/ScrollBasedAnimation";
+import ScrollBasedAnimation from "../../../components/ScrollBasedAnimation";
 
 const worldNews = [
   {

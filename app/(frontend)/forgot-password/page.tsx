@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import ScrollAnimation from "../../components/ScrollBasedAnimation";
+import ScrollAnimation from "../../../components/ScrollBasedAnimation";
 import Image from "next/image";
 
 export default function ForgotPasswordPage() {
