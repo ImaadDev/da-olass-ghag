@@ -1,7 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import { Menu, X, ChevronDown, Search } from "lucide-react";
+import {
+  Menu,
+  X,
+  ChevronDown,
+  Search,
+  Facebook,
+  Twitter,
+  Instagram,
+  Youtube,
+} from "lucide-react";
+import Image from "next/image";
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -10,7 +20,6 @@ export default function Navbar() {
   const [mobileNewsOpen, setMobileNewsOpen] = useState(false);
   const [mobileMoreOpen, setMobileMoreOpen] = useState(false);
 
-  // 🔗 Manually controlled link paths
   const newsCategories = [
     { name: "Pakistan", path: "/pk-news" },
     { name: "World", path: "/world-news" },
@@ -33,30 +42,50 @@ export default function Navbar() {
 
   return (
     <nav className="bg-white border-b-2 border-black sticky top-0 z-50">
-      {/* Top bar */}
-      <div className="border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 py-2 flex items-center justify-between text-xs">
-          <div className="flex items-center gap-4 font-mono text-black">
-            <span>SUNDAY, OCTOBER 26, 2025</span>
-          </div>
-          <div className="hidden md:flex items-center gap-4">
-            <button className="text-black hover:opacity-70 font-medium tracking-wide">
-              SUBSCRIBE
-            </button>
-          </div>
-        </div>
-      </div>
+      {/* Top Bar */}
+<div className="bg-gray-100 border-b border-gray-300">
+  <div className="max-w-7xl mx-auto px-4 py-2 flex flex-col md:flex-row items-center justify-between text-xs md:text-sm">
+    {/* Current Date */}
+    <div className="flex items-center gap-2 text-gray-700 font-medium">
+      <span className="uppercase tracking-wide">
+        {new Date().toLocaleDateString("en-US", {
+          weekday: "long",
+          month: "long",
+          day: "numeric",
+          year: "numeric",
+        })}
+      </span>
+    </div>
+
+    {/* Subscribe Button */}
+    <div className="mt-2 md:mt-0">
+      <button className="bg-red-600 text-white px-4 py-1 md:py-2 font-semibold tracking-wide hover:bg-red-700 transition">
+        Subscribe
+      </button>
+    </div>
+  </div>
+</div>
 
       {/* Main navbar */}
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <a
-            href="/"
-            className="text-2xl md:text-3xl font-bold tracking-tighter text-black hover:opacity-70 transition"
-          >
-            DA OLASS <span className="bg-black text-white px-1">GHAG</span>
-          </a>
+          {/* Logo + Title */}
+          <div className="flex items-center gap-3">
+            <a href="/" className="flex items-center gap-2">
+              <div className="relative w-12 h-12">
+                <Image
+                  src="/logo.png" // 🖼️ ensure this file is inside /public/logo.png
+                  alt="Da Olass Ghag Logo"
+                  fill
+                  className="object-contain"
+                  priority
+                />
+              </div>
+              <span className="text-sm md:text-lg font-bold tracking-tighter text-black hover:opacity-80 transition">
+                DA OLASS <span className="bg-red-700 text-white px-1">GHAG</span>
+              </span>
+            </a>
+          </div>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-8">
@@ -150,14 +179,34 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Search & Mobile Menu */}
+          {/* Search & Social & Mobile Menu */}
           <div className="flex items-center gap-4">
+            {/* Social Icons */}
+            <div className="hidden lg:flex items-center gap-3">
+              <a href="#" className="text-black hover:text-red-600 transition">
+                <Facebook className="w-4 h-4" />
+              </a>
+              <a href="#" className="text-black hover:text-red-600 transition">
+                <Twitter className="w-4 h-4" />
+              </a>
+              <a href="#" className="text-black hover:text-red-600 transition">
+                <Instagram className="w-4 h-4" />
+              </a>
+              <a href="#" className="text-black hover:text-red-600 transition">
+                <Youtube className="w-4 h-4" />
+              </a>
+            </div>
+
+            {/* Search */}
             <button className="text-black hover:opacity-70 transition">
               <Search className="w-5 h-5" />
             </button>
+
+            {/* Mobile Menu */}
             <button
               className="lg:hidden text-black hover:opacity-70 transition"
               onClick={() => setMobileOpen(!mobileOpen)}
+              aria-label="Toggle Menu"
             >
               {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -253,14 +302,33 @@ export default function Navbar() {
             </div>
           </div>
 
+          {/* Mobile Social Icons */}
+          <div className="flex items-center gap-4 px-4 py-3">
+            <a href="#" className="text-black hover:text-red-600 transition">
+              <Facebook className="w-5 h-5" />
+            </a>
+            <a href="#" className="text-black hover:text-red-600 transition">
+              <Twitter className="w-5 h-5" />
+            </a>
+            <a href="#" className="text-black hover:text-red-600 transition">
+              <Instagram className="w-5 h-5" />
+            </a>
+            <a href="#" className="text-black hover:text-red-600 transition">
+              <Youtube className="w-5 h-5" />
+            </a>
+          </div>
+
           {/* Mobile Auth Buttons */}
           <div className="pt-4 space-y-2">
             <button className="w-full border-2 border-black px-4 py-3 font-bold text-sm text-black hover:bg-black hover:text-white transition">
               SUBSCRIBE
             </button>
-            <button className="w-full border-2 border-black px-4 py-3 font-bold text-sm text-black hover:bg-black hover:text-white transition">
+            <a
+              href="/login"
+              className="block text-center border-2 border-black px-4 py-3 font-bold text-sm text-black hover:bg-black hover:text-white transition"
+            >
               SIGN IN
-            </button>
+            </a>
           </div>
         </div>
       </div>
