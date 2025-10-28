@@ -2,7 +2,7 @@
 
 import ScrollAnimation from "../components/ScrollBasedAnimation"; // adjust path if needed
 import Image from "next/image";
-import { Facebook, Instagram, Youtube, Twitter } from "lucide-react";
+import { Facebook, Instagram, Youtube, Twitter, TicketCheckIcon } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -88,33 +88,34 @@ export default function Footer() {
   {/* Social Icons */}
   <div className="flex items-center gap-5 mt-4">
     <a
-      href="#"
+      href="https://www.facebook.com/mudam675"
       className="p-2 bg-blue-800 rounded-full  hover:bg-blue-900 transition"
       aria-label="Facebook"
     >
       <Facebook className="w-4 h-4 text-white" />
     </a>
     <a
-      href="#"
+      href="https://www.instagram.com/da_olass_ghag?igsh=MXAwa2R1a3V3cnUxMw%3D%3D&utm_source=qr"
       className="p-2 bg-pink-800 rounded-full hover:bg-pink-600 transition"
       aria-label="Instagram"
     >
       <Instagram className="w-4 h-4 text-white" />
     </a>
     <a
-      href="#"
+      href="https://x.com/da_olass_ghag?s=11"
       className="p-2 bg-black rounded-full hover:bg-gary-800 transition"
       aria-label="Twitter"
     >
       <Twitter className="w-4 h-4 text-white" />
     </a>
     <a
-      href="#"
+      href="https://www.youtube.com/@DaOlassGhag"
       className="p-2 bg-white rounded-full hover:bg-gary-600 transition"
       aria-label="YouTube"
     >
       <Youtube className="w-4 h-4 text-red-600" />
     </a>
+  
   </div>
 
   {/* Developer Credit */}

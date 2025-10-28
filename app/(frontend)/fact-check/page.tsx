@@ -2,20 +2,20 @@
 
 import { useState, useEffect } from "react";
 import ScrollBasedAnimation from "../../../components/ScrollBasedAnimation";
-import { getShowbizNews } from "@/lib/getNewsByCategory";
+import { getFactCheckerNews } from "@/lib/getNewsByCategory";
 
 const ITEMS_PER_PAGE = 6;
 
-export default function ShowbizNewsPage() {
+export default function FactCheckPage() {
   const [news, setNews] = useState<any[]>([]);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchData() {
-      const showbizNews = await getShowbizNews();
-      console.log("showbiz news:", showbizNews);
-      setNews(showbizNews);
+      const factCheckNews = await getFactCheckerNews();
+      console.log("fact check news:", factCheckNews);
+      setNews(factCheckNews);
       setLoading(false);
     }
     fetchData();
@@ -24,7 +24,7 @@ export default function ShowbizNewsPage() {
   if (loading) {
     return (
       <main className="flex justify-center items-center h-screen text-gray-600">
-        Loading showbiz news...
+        Loading fact check news...
       </main>
     );
   }
@@ -32,7 +32,7 @@ export default function ShowbizNewsPage() {
   if (news.length === 0) {
     return (
       <main className="flex justify-center items-center h-screen text-gray-600">
-        No showbiz news available.
+        No fact check news available.
       </main>
     );
   }
@@ -49,13 +49,13 @@ export default function ShowbizNewsPage() {
       <ScrollBasedAnimation direction="up" delay={0.1}>
         <div className="flex items-center gap-4 mb-12">
           <div className="w-1 h-8 bg-black" />
-          <h1 className="text-3xl md:text-5xl font-bold uppercase tracking-tight">
-            Entertainment News
+          <h1 className="text-3xl md:text-5xl font-bold tracking-tight uppercase">
+            Fact Check
           </h1>
         </div>
       </ScrollBasedAnimation>
 
-      {/* Featured */}
+      {/* Featured News */}
       <ScrollBasedAnimation direction="up" delay={0.2}>
         <section className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-20">
           <div className="relative h-96 lg:h-[32rem] overflow-hidden">
@@ -76,55 +76,55 @@ export default function ShowbizNewsPage() {
               {news[0].title}
             </h2>
             <p className="text-gray-700 text-base leading-relaxed">
-              {news[0].summary || "Latest entertainment and showbiz news updates."}
+              {news[0].summary || "Latest fact-check and verification updates."}
             </p>
-            <a href={`/showbiz-news/${news[0].slug}`} className="mt-6 border-2 border-black px-8 py-3 font-bold text-sm tracking-widest hover:bg-black hover:text-white transition inline-block">
+            <button className="mt-6 border-2 border-black px-8 py-3 font-bold text-sm tracking-widest hover:bg-black hover:text-white transition-colors duration-300 w-fit">
               READ MORE
-            </a>
+            </button>
           </div>
         </section>
       </ScrollBasedAnimation>
 
-      {/* Grid */}
+      {/* Latest Updates */}
       <ScrollBasedAnimation direction="up" delay={0.3}>
         <section>
           <div className="flex items-center gap-4 mb-10">
             <div className="w-1 h-8 bg-black" />
             <h2 className="text-3xl md:text-4xl font-bold uppercase tracking-tight">
-              Latest Showbiz Highlights
+              Latest Fact Checks
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* News Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {paginatedNews.map((item: any, idx: number) => (
               <article
                 key={idx}
-                className="group cursor-pointer bg-white border border-gray-200 hover:bg-gray-50 transition"
+                className="group cursor-pointer bg-white border border-gray-200 transition-colors duration-300 hover:bg-gray-50"
               >
-                <a href={`/showbiz-news/${item.slug}`} className="block">
-                  <div className="relative h-64 overflow-hidden">
-                    <img
-                      src={item.image_url[0]}
-                      alt={item.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <div className="absolute top-4 left-4 px-3 py-1 border border-white bg-black/80">
-                      <span className="text-white text-xs font-semibold tracking-widest">
-                        {item.category}
-                      </span>
-                    </div>
+                <div className="relative w-full h-64 overflow-hidden">
+                  <img
+                    src={item.image_url[0]}
+                    alt={item.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute top-4 left-4 px-3 py-1 border border-white bg-black/80">
+                    <span className="text-white text-xs font-semibold tracking-widest">
+                      {item.category}
+                    </span>
                   </div>
-                  <div className="p-4 space-y-2">
-                    <h3 className="font-bold text-lg group-hover:translate-x-1 transition-transform">
-                      {item.title}
-                    </h3>
-                    <p className="text-xs text-gray-500 font-mono">
-                      {item.published_at
-                        ? new Date(item.published_at).toLocaleDateString()
-                        : "Recently"}
-                    </p>
-                  </div>
-                </a>
+                </div>
+
+                <div className="p-4 space-y-2">
+                  <h3 className="font-bold text-lg leading-snug group-hover:translate-x-1 transition-transform duration-300">
+                    {item.title}
+                  </h3>
+                  <p className="text-xs text-gray-500 font-mono">
+                    {item.published_at
+                      ? new Date(item.published_at).toLocaleDateString()
+                      : "Recently"}
+                  </p>
+                </div>
               </article>
             ))}
           </div>

@@ -1,67 +1,44 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ScrollBasedAnimation from "../../../components/ScrollBasedAnimation";
+import { getTechnologyNews } from "@/lib/getNewsByCategory";
 
-const technologyNews = [
-  {
-    title: "AI Revolution: Startups Transforming Global Industries",
-    category: "TECHNOLOGY",
-    img: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    title: "Quantum Computing Breakthrough Promises Faster Processing",
-    category: "TECHNOLOGY",
-    img: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    title: "Pakistan’s Tech Ecosystem Sees Surge in Investment",
-    category: "TECHNOLOGY",
-    img: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    title: "Cybersecurity Firms Report Record Demand in 2025",
-    category: "TECHNOLOGY",
-    img: "https://images.unsplash.com/photo-1581091870622-7bdf6c1df2a0?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    title: "SpaceX Launches Next-Gen Satellites for Global Internet",
-    category: "TECHNOLOGY",
-    img: "https://images.unsplash.com/photo-1544829099-303127b00c3c?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    title: "Robotics in Healthcare: The Future of Medical Assistance",
-    category: "TECHNOLOGY",
-    img: "https://images.unsplash.com/photo-1603791440384-56cd371ee9a7?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    title: "Google Unveils Next-Gen AI Model for Developers",
-    category: "TECHNOLOGY",
-    img: "https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    title: "Electric Vehicles Now Dominate Asian Markets",
-    category: "TECHNOLOGY",
-    img: "https://images.unsplash.com/photo-1593941707874-ef25b8b4a92f?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    title: "5G Networks Power Smart Cities Across the Globe",
-    category: "TECHNOLOGY",
-    img: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    title: "Blockchain Beyond Crypto: Securing Digital Transactions",
-    category: "TECHNOLOGY",
-    img: "https://images.unsplash.com/photo-1518544886114-1e1c7d2f19a8?auto=format&fit=crop&w=800&q=80",
-  },
-];
-
-const ITEMS_PER_PAGE = 16;
+const ITEMS_PER_PAGE = 6;
 
 export default function TechnologyNewsPage() {
+  const [news, setNews] = useState<any[]>([]);
   const [page, setPage] = useState(1);
-  const totalPages = Math.ceil(technologyNews.length / ITEMS_PER_PAGE);
-  const paginatedNews = technologyNews.slice(
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchData() {
+      const techNews = await getTechnologyNews();
+      console.log("technology news:", techNews);
+      setNews(techNews);
+      setLoading(false);
+    }
+    fetchData();
+  }, []);
+
+  if (loading) {
+    return (
+      <main className="flex justify-center items-center h-screen text-gray-600">
+        Loading technology news...
+      </main>
+    );
+  }
+
+  if (news.length === 0) {
+    return (
+      <main className="flex justify-center items-center h-screen text-gray-600">
+        No technology news available.
+      </main>
+    );
+  }
+
+  const totalPages = Math.ceil(news.length / ITEMS_PER_PAGE);
+  const paginatedNews = news.slice(
     (page - 1) * ITEMS_PER_PAGE,
     page * ITEMS_PER_PAGE
   );
@@ -84,13 +61,13 @@ export default function TechnologyNewsPage() {
           {/* Image */}
           <div className="relative h-96 lg:h-[32rem] overflow-hidden">
             <img
-              src={technologyNews[0].img}
-              alt={technologyNews[0].title}
+              src={news[0].image_url[0]}
+              alt={news[0].title}
               className="w-full h-full object-cover"
             />
             <div className="absolute top-4 left-4 px-3 py-1 border border-white bg-black/80">
               <span className="text-white text-xs font-semibold tracking-widest">
-                {technologyNews[0].category}
+                {news[0].category}
               </span>
             </div>
           </div>
@@ -98,12 +75,10 @@ export default function TechnologyNewsPage() {
           {/* Text */}
           <div className="flex flex-col justify-center">
             <h2 className="text-3xl font-bold mb-4 leading-snug">
-              {technologyNews[0].title}
+              {news[0].title}
             </h2>
             <p className="text-gray-700 text-base leading-relaxed">
-              Innovation and automation are reshaping industries globally, with
-              AI and data-driven technologies driving a new wave of efficiency
-              and creativity.
+              {news[0].summary || "Innovation and automation are reshaping industries globally, with AI and data-driven technologies driving a new wave of efficiency and creativity."}
             </p>
             <button className="mt-6 border-2 border-black px-8 py-3 font-bold text-sm tracking-widest hover:bg-black hover:text-white transition-colors duration-300 w-fit">
               READ MORE
@@ -123,33 +98,35 @@ export default function TechnologyNewsPage() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {paginatedNews.map((item, idx) => (
+            {paginatedNews.map((item: any, idx: number) => (
               <article
                 key={idx}
                 className="group cursor-pointer bg-white border border-gray-200 hover:bg-gray-50 transition-colors duration-300"
               >
-                <div className="relative w-full h-64 overflow-hidden">
-                  <img
-                    src={item.img}
-                    alt={item.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute top-4 left-4 px-3 py-1 border border-white bg-black/80">
-                    <span className="text-white text-xs font-semibold tracking-widest">
-                      {item.category}
-                    </span>
+                <a href={`/tech-news/${item.slug}`} className="block">
+                  <div className="relative w-full h-64 overflow-hidden">
+                    <img
+                      src={item.image_url[0]}
+                      alt={item.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute top-4 left-4 px-3 py-1 border border-white bg-black/80">
+                      <span className="text-white text-xs font-semibold tracking-widest">
+                        {item.category}
+                      </span>
+                    </div>
                   </div>
-                </div>
-                <div className="p-4 space-y-2">
-                  <h3 className="font-bold text-lg leading-snug group-hover:translate-x-1 transition-transform duration-300">
-                    {item.title}
-                  </h3>
-                  <div className="flex items-center gap-2 text-xs text-gray-500 font-mono">
-                    <span>3 hours ago</span>
-                    <span>•</span>
-                    <span>5 min read</span>
+                  <div className="p-4 space-y-2">
+                    <h3 className="font-bold text-lg leading-snug group-hover:translate-x-1 transition-transform duration-300">
+                      {item.title}
+                    </h3>
+                    <p className="text-xs text-gray-500 font-mono">
+                      {item.published_at
+                        ? new Date(item.published_at).toLocaleDateString()
+                        : "Recently"}
+                    </p>
                   </div>
-                </div>
+                </a>
               </article>
             ))}
           </div>

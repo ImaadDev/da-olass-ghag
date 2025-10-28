@@ -1,18 +1,46 @@
 "use client";
 
-import { useState } from "react";
-import ScrollAnimation from "../../../components/ScrollBasedAnimation"; // optional for scroll animation
+import { useState, useEffect } from "react";
+import ScrollAnimation from "../../../components/ScrollBasedAnimation"; // optional
 import Image from "next/image";
+import { supabase } from "@/lib/supabaseClient";
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const router = useRouter();
+
+  // Redirect logged-in users
+  useEffect(() => {
+    const checkSession = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (session) router.push("/admin/news");
+    };
+    checkSession();
+  }, [router]);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Add login logic here
-    alert(`Email: ${email}\nPassword: ${password}`);
+    setLoading(true);
+
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+
+    setLoading(false);
+
+    if (error) {
+      alert(`Login failed: ${error.message}`);
+      console.error("Login error:", error);
+    } else {
+      alert("Login successful!");
+      router.push("/admin");
+    }
   };
 
   return (
@@ -20,19 +48,18 @@ export default function LoginPage() {
       <ScrollAnimation direction="up" delay={0}>
         <div className="max-w-md w-full text-black p-6 md:p-10 space-y-6">
           {/* Logo */}
-<div className="text-center mb-8">
-  <Image
-    src="/logo.png" // 🖼️ replace with your actual logo path
-    alt="Da Olass Ghag Logo"
-    width={84}
-    height={84}
-    className="mx-auto w-32 h-auto object-contain"
-  />
-  <p className="text-gray-400 mt-3 text-sm tracking-wide">
-    Sign in to access the latest videos, news, and podcasts.
-  </p>
-</div>
-
+          <div className="text-center mb-8">
+            <Image
+              src="/logo.png" // replace with your logo path
+              alt="Logo"
+              width={84}
+              height={84}
+              className="mx-auto w-32 h-auto object-contain"
+            />
+            <p className="text-gray-400 mt-3 text-sm tracking-wide">
+              Sign in to access the latest videos, news, and podcasts.
+            </p>
+          </div>
 
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -86,14 +113,12 @@ export default function LoginPage() {
             {/* Submit */}
             <button
               type="submit"
-              className="w-full py-3 font-bold text-white bg-red-600 hover:bg-red-700 transition text-lg"
+              disabled={loading}
+              className="w-full py-3 font-bold text-white bg-red-600 hover:bg-red-700 transition text-lg disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              Sign In
+              {loading ? "Signing in..." : "Sign In"}
             </button>
           </form>
-
-
-        
         </div>
       </ScrollAnimation>
     </main>

@@ -1,67 +1,44 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ScrollBasedAnimation from "../../../components/ScrollBasedAnimation";
-
-const healthNews = [
-  {
-    title: "New National Health Policy Targets Universal Coverage",
-    category: "HEALTH",
-    img: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    title: "Pakistan Launches Major Anti-Malaria Campaign",
-    category: "HEALTH",
-    img: "https://images.unsplash.com/photo-1576765607924-3e447244af8b?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    title: "AI in Medicine: Revolutionizing Early Disease Detection",
-    category: "HEALTH",
-    img: "https://images.unsplash.com/photo-1576765607924-3e447244af8b?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    title: "Nutrition Experts Warn Against Rising Obesity Trends",
-    category: "HEALTH",
-    img: "https://images.unsplash.com/photo-1550831107-1553da8c8464?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    title: "World Health Organization Backs New Vaccine Initiative",
-    category: "HEALTH",
-    img: "https://images.unsplash.com/photo-1584036561566-baf8f5f1b144?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    title: "Mental Health Awareness Rises Among Youth",
-    category: "HEALTH",
-    img: "https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    title: "Telemedicine Expands Access in Remote Areas",
-    category: "HEALTH",
-    img: "https://images.unsplash.com/photo-1580281657521-319cdceb8f3b?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    title: "Hospitals Adopt New AI-Driven Management Systems",
-    category: "HEALTH",
-    img: "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    title: "Global Health Summit Focuses on Post-COVID Recovery",
-    category: "HEALTH",
-    img: "https://images.unsplash.com/photo-1580281658628-8b6c89d90d3b?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    title: "Fitness Industry Booms with Smart Tech Devices",
-    category: "HEALTH",
-    img: "https://images.unsplash.com/photo-1554284126-aa88f22d8b74?auto=format&fit=crop&w=800&q=80",
-  },
-];
+import { getHealthNews } from "@/lib/getNewsByCategory";
 
 const ITEMS_PER_PAGE = 6;
 
 export default function HealthNewsPage() {
+  const [news, setNews] = useState<any[]>([]);
   const [page, setPage] = useState(1);
-  const totalPages = Math.ceil(healthNews.length / ITEMS_PER_PAGE);
-  const paginatedNews = healthNews.slice(
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchData() {
+      const healthNews = await getHealthNews();
+      console.log("health news:", healthNews);
+      setNews(healthNews);
+      setLoading(false);
+    }
+    fetchData();
+  }, []);
+
+  if (loading) {
+    return (
+      <main className="flex justify-center items-center h-screen text-gray-600">
+        Loading health news...
+      </main>
+    );
+  }
+
+  if (news.length === 0) {
+    return (
+      <main className="flex justify-center items-center h-screen text-gray-600">
+        No health news available.
+      </main>
+    );
+  }
+
+  const totalPages = Math.ceil(news.length / ITEMS_PER_PAGE);
+  const paginatedNews = news.slice(
     (page - 1) * ITEMS_PER_PAGE,
     page * ITEMS_PER_PAGE
   );
@@ -78,78 +55,77 @@ export default function HealthNewsPage() {
         </div>
       </ScrollBasedAnimation>
 
-      {/* Featured Story */}
+      {/* Featured News */}
       <ScrollBasedAnimation direction="up" delay={0.2}>
         <section className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-20">
-          {/* Image */}
           <div className="relative h-96 lg:h-[32rem] overflow-hidden">
             <img
-              src={healthNews[0].img}
-              alt={healthNews[0].title}
+              src={news[0].image_url[0]}
+              alt={news[0].title}
               className="w-full h-full object-cover"
             />
             <div className="absolute top-4 left-4 px-3 py-1 border border-white bg-black/80">
               <span className="text-white text-xs font-semibold tracking-widest">
-                {healthNews[0].category}
+                {news[0].category}
               </span>
             </div>
           </div>
 
-          {/* Text */}
           <div className="flex flex-col justify-center">
             <h2 className="text-3xl font-bold mb-4 leading-snug">
-              {healthNews[0].title}
+              {news[0].title}
             </h2>
             <p className="text-gray-700 text-base leading-relaxed">
-              With new policies and global collaboration, the health sector is
-              entering a new phase of innovation and accessibility to improve
-              life expectancy and wellness.
+              {news[0].summary || "Latest health news and medical updates."}
             </p>
-            <button className="mt-6 border-2 border-black px-8 py-3 font-bold text-sm tracking-widest hover:bg-black hover:text-white transition-colors duration-300 w-fit">
+            <a href={`/health-news/${news[0].slug}`} className="mt-6 border-2 border-black px-8 py-3 font-bold text-sm tracking-widest hover:bg-black hover:text-white transition inline-block">
               READ MORE
-            </button>
+            </a>
           </div>
         </section>
       </ScrollBasedAnimation>
 
-      {/* News Grid */}
+      {/* Latest Updates */}
       <ScrollBasedAnimation direction="up" delay={0.3}>
         <section>
           <div className="flex items-center gap-4 mb-10">
             <div className="w-1 h-8 bg-black" />
             <h2 className="text-3xl md:text-4xl font-bold uppercase tracking-tight">
-              Latest Health Updates
+              Latest Updates
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {paginatedNews.map((item, idx) => (
+          {/* News Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {paginatedNews.map((item: any, idx: number) => (
               <article
                 key={idx}
-                className="group cursor-pointer bg-white border border-gray-200 hover:bg-gray-50 transition-colors duration-300"
+                className="group cursor-pointer bg-white border border-gray-200 transition-colors duration-300 hover:bg-gray-50"
               >
-                <div className="relative w-full h-64 overflow-hidden">
-                  <img
-                    src={item.img}
-                    alt={item.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute top-4 left-4 px-3 py-1 border border-white bg-black/80">
-                    <span className="text-white text-xs font-semibold tracking-widest">
-                      {item.category}
-                    </span>
+                <a href={`/health-news/${item.slug}`} className="block">
+                  <div className="relative w-full h-64 overflow-hidden">
+                    <img
+                      src={item.image_url[0]}
+                      alt={item.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute top-4 left-4 px-3 py-1 border border-white bg-black/80">
+                      <span className="text-white text-xs font-semibold tracking-widest">
+                        {item.category}
+                      </span>
+                    </div>
                   </div>
-                </div>
-                <div className="p-4 space-y-2">
-                  <h3 className="font-bold text-lg leading-snug group-hover:translate-x-1 transition-transform duration-300">
-                    {item.title}
-                  </h3>
-                  <div className="flex items-center gap-2 text-xs text-gray-500 font-mono">
-                    <span>4 hours ago</span>
-                    <span>•</span>
-                    <span>6 min read</span>
+                  <div className="p-4 space-y-2">
+                    <h3 className="font-bold text-lg leading-snug group-hover:translate-x-1 transition-transform duration-300">
+                      {item.title}
+                    </h3>
+                    <p className="text-xs text-gray-500 font-mono">
+                      {item.published_at
+                        ? new Date(item.published_at).toLocaleDateString()
+                        : "Recently"}
+                    </p>
                   </div>
-                </div>
+                </a>
               </article>
             ))}
           </div>
@@ -162,7 +138,7 @@ export default function HealthNewsPage() {
           <button
             onClick={() => setPage((p) => Math.max(1, p - 1))}
             disabled={page === 1}
-            className="border-2 border-black px-6 py-2 text-sm font-bold uppercase tracking-widest disabled:opacity-30 hover:bg-black hover:text-white transition-colors duration-300"
+            className="border-2 border-black px-6 py-2 text-sm font-bold uppercase tracking-widest disabled:opacity-30 hover:bg-black hover:text-white transition"
           >
             Prev
           </button>
@@ -172,7 +148,7 @@ export default function HealthNewsPage() {
           <button
             onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
             disabled={page === totalPages}
-            className="border-2 border-black px-6 py-2 text-sm font-bold uppercase tracking-widest disabled:opacity-30 hover:bg-black hover:text-white transition-colors duration-300"
+            className="border-2 border-black px-6 py-2 text-sm font-bold uppercase tracking-widest disabled:opacity-30 hover:bg-black hover:text-white transition"
           >
             Next
           </button>

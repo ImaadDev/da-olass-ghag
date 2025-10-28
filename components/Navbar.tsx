@@ -10,6 +10,7 @@ import {
   Twitter,
   Instagram,
   Youtube,
+  Linkedin
 } from "lucide-react";
 import Image from "next/image";
 
@@ -26,10 +27,10 @@ export default function Navbar() {
     { name: "Business", path: "/business-news" },
     { name: "Technology", path: "/tech-news" },
     { name: "Health", path: "/health-news" },
-    { name: "Climate", path: "/environments" },
+    { name: "Climate", path: "/climate-news" },
     { name: "Sports", path: "/sports-news" },
     { name: "Entertainment", path: "/showbiz-news" },
-    { name: "Opinion", path: "/opinion" },
+    { name: "Fact Check", path: "/fact-check" },
   ];
 
   const moreLinks = [
@@ -122,7 +123,7 @@ export default function Navbar() {
                   <a
                     key={path}
                     href={path}
-                    className="block px-4 py-3 font-medium text-sm border-b border-gray-200 last:border-b-0 text-black hover:bg-black hover:text-white transition"
+                    className="block px-4 py-3 font-medium text-sm border-b border-gray-200 last:border-b-0 text-black hover:bg-red-600 hover:text-white transition"
                   >
                     {name.toUpperCase()}
                   </a>
@@ -170,7 +171,7 @@ export default function Navbar() {
                   <a
                     key={path}
                     href={path}
-                    className="block px-4 py-3 font-medium text-sm border-b border-gray-200 last:border-b-0 text-black hover:bg-black hover:text-white transition"
+                    className="block px-4 py-3 font-medium text-sm border-b border-gray-200 last:border-b-0 text-black hover:bg-red-600 hover:text-white transition"
                   >
                     {name.toUpperCase()}
                   </a>
@@ -183,17 +184,20 @@ export default function Navbar() {
           <div className="flex items-center gap-4">
             {/* Social Icons */}
             <div className="hidden lg:flex items-center gap-3">
-              <a href="#" className="text-black hover:text-red-600 transition">
+              <a href="https://www.facebook.com/mudam675" className="text-black hover:text-red-600 transition">
                 <Facebook className="w-4 h-4" />
               </a>
-              <a href="#" className="text-black hover:text-red-600 transition">
+              <a href="https://x.com/da_olass_ghag?s=11" className="text-black hover:text-red-600 transition">
                 <Twitter className="w-4 h-4" />
               </a>
-              <a href="#" className="text-black hover:text-red-600 transition">
+              <a href="https://www.instagram.com/da_olass_ghag?igsh=MXAwa2R1a3V3cnUxMw%3D%3D&utm_source=qr" className="text-black hover:text-red-600 transition">
                 <Instagram className="w-4 h-4" />
               </a>
-              <a href="#" className="text-black hover:text-red-600 transition">
+              <a href="https://www.youtube.com/@DaOlassGhag" className="text-black hover:text-red-600 transition">
                 <Youtube className="w-4 h-4" />
+              </a>
+              <a href="https://www.linkedin.com/in/da-olass-ghag-23749827b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" className="text-black hover:text-red-600 transition">
+                <Linkedin className="w-4 h-4" />
               </a>
             </div>
 

@@ -1,6 +1,8 @@
 "use client";
 
 import { Menu, X, User, Bell, LogOut } from "lucide-react";
+import { supabase } from "@/lib/supabaseClient";
+import { useRouter } from "next/navigation";
 
 interface AdminNavbarProps {
   open: boolean;
@@ -8,6 +10,17 @@ interface AdminNavbarProps {
 }
 
 export default function AdminNavbar({ open, setOpen }: AdminNavbarProps) {
+  const router = useRouter();
+
+  const handleLogout = async () => {
+    const { error } = await supabase.auth.signOut();
+    if (error) {
+      console.error("Logout error:", error.message);
+      return;
+    }
+    router.push("/login"); // redirect to login page
+  };
+
   return (
     <header className="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-4 shadow-sm">
       <div className="flex items-center gap-3">
@@ -34,7 +47,10 @@ export default function AdminNavbar({ open, setOpen }: AdminNavbarProps) {
         <button className="text-black hover:text-red-600 transition p-1 md:p-0">
           <Bell className="h-5 w-5 md:h-6 md:w-6"/>
         </button>
-        <button className="text-black hover:text-red-600 transition p-1 md:p-0">
+        <button
+          className="text-black hover:text-red-600 transition p-1 md:p-0"
+          onClick={handleLogout} // 🔹 added logout
+        >
           <LogOut className="h-5 w-5 md:h-6 md:w-6"/>
         </button>
       </div>

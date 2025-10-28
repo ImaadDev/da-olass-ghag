@@ -3,7 +3,7 @@ import {Montserrat } from "next/font/google";
 import "../globals.css";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
-
+import SocialFab from "../../components/ui/SocialFab";
 const montserrat = Montserrat({
   variable: "--font-montserrat",
   subsets: ["latin"],
@@ -25,6 +25,7 @@ export default function RootLayout({
       <body
         className={`${montserrat.variable} antialiased`}
       >
+        <SocialFab/>
         <Navbar />
         {children}
         <Footer />
