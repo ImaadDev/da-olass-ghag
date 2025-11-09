@@ -265,5 +265,79 @@
         "category": "TECHNOLOGY"
       }
     ]
+  },
+  "about": {
+    "title": "About Da Olass Ghag",
+    "subtitle": "Da Olass Ghag (in Pashto: د اولس غږ) means \"The Voice of the People.\" Founded in 2017 by a group of student journalists, it started as a small university initiative to amplify unheard voices from Khyber Pakhtunkhwa and other underrepresented regions of Pakistan.",
+    "ourStory": "Our Story",
+    "ourStoryContent": [
+      "What began as a student-led effort with limited resources evolved into a bold, independent movement. The founders, driven by a deep sense of purpose and responsibility, built Da Olass Ghag on a foundation of honesty, integrity, and consistency.",
+      "Despite facing countless challenges — from censorship to financial struggles — the mission never wavered. What started in classrooms and small studios has grown into a trusted digital newsroom recognized for its credibility and community-based reporting.",
+      "Today, Da Olass Ghag produces authentic Pashto journalism that brings stories of culture, politics, environment, and people's daily struggles into focus — always guided by one belief: journalism should serve the people, not power."
+    ],
+    "ourMission": "Our Mission",
+    "missionContent": "To strengthen Pashto-language journalism by reporting with integrity, inclusivity, and independence — amplifying the voices that are often unheard and ensuring every story reflects the lived realities of the people.",
+    "ourVision": "Our Vision",
+    "visionContent": "To become the leading digital Pashto news platform — connecting local realities with global conversations, inspiring dialogue, promoting understanding, and empowering the next generation of storytellers and journalists.",
+    "ourValues": "Our Values",
+    "values": {
+      "credibility": {
+        "title": "Credibility",
+        "description": "Truth and accuracy above all. We believe that facts build trust, and trust builds communities."
+      },
+      "independence": {
+        "title": "Independence",
+        "description": "Free from political or corporate influence — we report with fairness, transparency, and accountability."
+      },
+      "diversity": {
+        "title": "Diversity",
+        "description": "We highlight voices that are often overlooked — creating a platform that reflects all of society, not just a fraction."
+      },
+      "innovation": {
+        "title": "Innovation",
+        "description": "We embrace new digital tools and storytelling formats to make Pashto journalism more engaging and accessible for everyone."
+      }
+    },
+    "closingTitle": "The Voice of the People",
+    "closingContent": "At Da Olass Ghag, we continue to tell stories that matter — with courage, clarity, and compassion.",
+    "contactUs": "CONTACT US"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "Have questions, feedback, or story tips? We'd love to hear from you. Fill out the form below or reach out via email, phone, or social media.",
+    "form": {
+      "fullName": "Full Name",
+      "email": "Email Address",
+      "subject": "Subject",
+      "message": "Message",
+      "sendMessage": "SEND MESSAGE"
+    },
+    "contactDetails": {
+      "email": {
+        "title": "Email",
+        "primary": "info@daolassghag.com",
+        "tips": "tips@daolassghag.com"
+      },
+      "phone": {
+        "title": "Phone",
+        "primary": "+92 300 1234567",
+        "secondary": "+92 321 7654321"
+      },
+      "address": {
+        "title": "Address",
+        "line1": "Da Olass Ghag Headquarters",
+        "line2": "Peshawar, Khyber Pakhtunkhwa, Pakistan"
+      }
+    },
+    "followUs": "Follow Us",
+    "socialLinks": {
+      "facebook": "Facebook",
+      "twitter": "Twitter",
+      "instagram": "Instagram",
+      "youtube": "YouTube"
+    },
+    "stayConnected": "Stay Connected",
+    "stayConnectedText": "We are always ready to hear from our readers and contributors. Your feedback makes us better.",
+    "subscribe": "SUBSCRIBE"
   }
 }
