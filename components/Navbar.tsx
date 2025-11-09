@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslation } from 'react-i18next';
+import LanguageSwitcher from "./LanguageSwitcher";
 import {
   Menu,
   X,
@@ -13,8 +15,10 @@ import {
   Linkedin
 } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Navbar() {
+  const { t } = useTranslation();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [newsDropdown, setNewsDropdown] = useState(false);
   const [moreDropdown, setMoreDropdown] = useState(false);
@@ -22,23 +26,23 @@ export default function Navbar() {
   const [mobileMoreOpen, setMobileMoreOpen] = useState(false);
 
   const newsCategories = [
-    { name: "Pakistan", path: "/pk-news" },
-    { name: "World", path: "/world-news" },
-    { name: "Business", path: "/business-news" },
-    { name: "Technology", path: "/tech-news" },
-    { name: "Health", path: "/health-news" },
-    { name: "Climate", path: "/climate-news" },
-    { name: "Sports", path: "/sports-news" },
-    { name: "Entertainment", path: "/showbiz-news" },
-    { name: "Fact Check", path: "/fact-check" },
+    { name: t('navbar.pakistan'), path: "/pk-news" },
+    { name: t('navbar.world'), path: "/world-news" },
+    { name: t('navbar.business'), path: "/business-news" },
+    { name: t('navbar.technology'), path: "/tech-news" },
+    { name: t('navbar.health'), path: "/health-news" },
+    { name: t('navbar.climate'), path: "/climate-news" },
+    { name: t('navbar.sports'), path: "/sports-news" },
+    { name: t('navbar.entertainment'), path: "/showbiz-news" },
+    { name: t('navbar.factCheck'), path: "/fact-check" },
   ];
 
   const moreLinks = [
-    { name: "About Us", path: "/about" },
-    { name: "Contact", path: "/contact" },
-    { name: "Archives", path: "/archives" },
-    { name: "Newsletter", path: "/newsletter" },
-    { name: "Podcasts", path: "/podcasts" },
+    { name: t('navbar.aboutUs'), path: "/about" },
+    { name: t('navbar.contact'), path: "/contact" },
+    { name: t('navbar.archives'), path: "/archives" },
+    { name: t('navbar.newsletter'), path: "/newsletter" },
+    { name: t('navbar.podcasts'), path: "/podcasts" },
   ];
 
   return (
@@ -61,7 +65,7 @@ export default function Navbar() {
     {/* Subscribe Button */}
     <div className="mt-2 md:mt-0">
       <button className="bg-red-600 text-white px-4 py-1 md:py-2 font-semibold tracking-wide hover:bg-red-700 transition">
-        Subscribe
+        {t('navbar.subscribe')}
       </button>
     </div>
   </div>
@@ -72,7 +76,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
           {/* Logo + Title */}
           <div className="flex items-center gap-3">
-            <a href="/" className="flex items-center gap-2">
+            <Link href="/" className="flex items-center gap-2">
               <div className="relative w-12 h-12">
                 <Image
                   src="/logo.png" // 🖼️ ensure this file is inside /public/logo.png
@@ -83,19 +87,19 @@ export default function Navbar() {
                 />
               </div>
               <span className="text-sm md:text-lg font-bold tracking-tighter text-black hover:opacity-80 transition">
-                DA OLASS <span className="bg-red-700 text-white px-1">GHAG</span>
+                {t("navbar.logotext1")} <span className="bg-red-700 text-white px-1">{t("navbar.logotext2")} </span>
               </span>
-            </a>
+            </Link>
           </div>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-8">
-            <a
+            <Link
               href="/"
               className="font-bold text-sm tracking-wide text-black hover:opacity-70 transition"
             >
-              HOME
-            </a>
+              {t('navbar.home')}
+            </Link>
 
             {/* News Dropdown */}
             <div
@@ -104,7 +108,7 @@ export default function Navbar() {
               onMouseLeave={() => setNewsDropdown(false)}
             >
               <button className="flex items-center gap-1 font-bold text-sm tracking-wide text-black hover:opacity-70 transition">
-                NEWS
+                {t('navbar.news')}
                 <ChevronDown
                   className={`w-4 h-4 transition-transform ${
                     newsDropdown ? "rotate-180" : ""
@@ -135,14 +139,14 @@ export default function Navbar() {
               href="/live"
               className="font-bold text-sm tracking-wide text-black hover:opacity-70 transition"
             >
-              LIVE TV
+              {t('navbar.liveTv')}
             </a>
 
             <a
               href="/videos"
               className="font-bold text-sm tracking-wide text-black hover:opacity-70 transition"
             >
-              VIDEOS
+              {t('navbar.videos')}
             </a>
 
             {/* More Dropdown */}
@@ -152,7 +156,7 @@ export default function Navbar() {
               onMouseLeave={() => setMoreDropdown(false)}
             >
               <button className="flex items-center gap-1 font-bold text-sm tracking-wide text-black hover:opacity-70 transition">
-                MORE
+                {t('navbar.more')}
                 <ChevronDown
                   className={`w-4 h-4 transition-transform ${
                     moreDropdown ? "rotate-180" : ""
@@ -178,6 +182,8 @@ export default function Navbar() {
                 ))}
               </div>
             </div>
+                          <LanguageSwitcher />
+
           </div>
 
           {/* Search & Social & Mobile Menu */}
@@ -225,12 +231,12 @@ export default function Navbar() {
         }`}
       >
         <div className="px-4 py-4 space-y-1 bg-white">
-          <a
+          <Link
             href="/"
             className="block px-4 py-3 font-bold text-sm border-b border-gray-200 text-black hover:bg-gray-50 transition"
           >
-            HOME
-          </a>
+            {t('navbar.home')}
+          </Link>
 
           {/* Mobile News Dropdown */}
           <div className="border-b border-gray-200">
@@ -238,7 +244,7 @@ export default function Navbar() {
               onClick={() => setMobileNewsOpen(!mobileNewsOpen)}
               className="w-full flex items-center justify-between px-4 py-3 font-bold text-sm text-black hover:bg-gray-50 transition"
             >
-              NEWS
+              {t('navbar.news')}
               <ChevronDown
                 className={`w-4 h-4 transition-transform ${
                   mobileNewsOpen ? "rotate-180" : ""
@@ -266,14 +272,14 @@ export default function Navbar() {
             href="/live"
             className="block px-4 py-3 font-bold text-sm border-b border-gray-200 text-black hover:bg-gray-50 transition"
           >
-            LIVE TV
+            {t('navbar.liveTv')}
           </a>
 
           <a
             href="/videos"
             className="block px-4 py-3 font-bold text-sm border-b border-gray-200 text-black hover:bg-gray-50 transition"
           >
-            VIDEOS
+            {t('navbar.videos')}
           </a>
 
           {/* Mobile More Dropdown */}
@@ -282,7 +288,7 @@ export default function Navbar() {
               onClick={() => setMobileMoreOpen(!mobileMoreOpen)}
               className="w-full flex items-center justify-between px-4 py-3 font-bold text-sm text-black hover:bg-gray-50 transition"
             >
-              MORE
+              {t('navbar.more')}
               <ChevronDown
                 className={`w-4 h-4 transition-transform ${
                   mobileMoreOpen ? "rotate-180" : ""
@@ -325,7 +331,7 @@ export default function Navbar() {
           {/* Mobile Auth Buttons */}
           <div className="pt-4 space-y-2">
             <button className="w-full border-2 border-black px-4 py-3 font-bold text-sm text-black hover:bg-black hover:text-white transition">
-              SUBSCRIBE
+              {t('navbar.subscribe')}
             </button>
             <a
               href="/login"

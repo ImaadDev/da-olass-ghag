@@ -2,31 +2,20 @@
 
 import Image from "next/image";
 import ScrollBasedAnimation from "../ScrollBasedAnimation";
-
-const internationalNews = [
-  {
-    title: "UN holds climate summit with global leaders",
-    category: "WORLD",
-    img: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    title: "Economic sanctions impact trade in Asia-Pacific",
-    category: "ECONOMY",
-    img: "https://images.unsplash.com/photo-1581093458411-3c8f87d25f65?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    title: "New technology agreements signed in Geneva",
-    category: "TECHNOLOGY",
-    img: "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    title: "International humanitarian aid reaches conflict zones",
-    category: "HUMANITARIAN",
-    img: "https://images.unsplash.com/photo-1584036561584-b03c19da874c?auto=format&fit=crop&w=800&q=80",
-  },
-];
+import { useTranslation } from "react-i18next";
 
 export default function InternationalNews() {
+  const { t } = useTranslation();
+
+  const internationalNews = t("home.internationalNewsData", { returnObjects: true });
+
+  const images = [
+    "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1581093458411-3c8f87d25f65?auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1584036561584-b03c19da874c?auto=format&fit=crop&w=800&q=80",
+  ];
+
   return (
     <section className="max-w-7xl mx-auto px-8 py-16 md:py-24 border-t border-gray-100">
       {/* Section header */}
@@ -34,7 +23,7 @@ export default function InternationalNews() {
         <div className="flex items-center gap-4 mb-12">
           <div className="w-1 h-8 bg-black" />
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight uppercase">
-            International News
+            {t("home.internationalNews")}
           </h2>
         </div>
       </ScrollBasedAnimation>
@@ -51,7 +40,7 @@ export default function InternationalNews() {
             <article className="cursor-pointer group">
               <div className="relative w-full h-56 overflow-hidden">
                 <Image
-                  src={news.img}
+                  src={images[idx]}
                   alt={news.title}
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -74,7 +63,7 @@ export default function InternationalNews() {
       <div className="mt-16 text-center">
         <ScrollBasedAnimation direction="up" delay={0.4}>
           <button className="border-2 border-black px-8 py-3 font-bold text-sm tracking-widest hover:bg-black hover:text-white transition-colors duration-300">
-            VIEW ALL INTERNATIONAL NEWS
+            {t("home.viewAllInternationalNews")}
           </button>
         </ScrollBasedAnimation>
       </div>

@@ -3,8 +3,11 @@
 import ScrollAnimation from "../components/ScrollBasedAnimation"; // adjust path if needed
 import Image from "next/image";
 import { Facebook, Instagram, Youtube, Twitter, TicketCheckIcon } from "lucide-react";
+import { useTranslation } from 'react-i18next';
+import Link from "next/link";
 
 export default function Footer() {
+  const { t } = useTranslation();
   return (
     <footer className="bg-red-700 text-gray-700">
       <ScrollAnimation direction="up" delay={0.3}>
@@ -25,8 +28,7 @@ export default function Footer() {
     
   </div>
   <p className="text-gray-300 text-sm leading-relaxed max-w-xs">
-      Delivering the latest news, videos, and insights across business, technology,
-      health, sports, and entertainment.
+      {t('footer.about')}
     </p>
   <div>
     
@@ -40,13 +42,13 @@ export default function Footer() {
 <ScrollAnimation direction="up" delay={0.4}>
           {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-bold text-white mb-4">Quick Links</h3>
+            <h3 className="text-lg font-bold text-white mb-4">{t('footer.quickLinks')}</h3>
             <ul className="space-y-2 text-gray-300 text-sm">
-              <li><a href="/" className="hover:text-red-600 transition">Home</a></li>
-              <li><a href="/videos" className="hover:text-red-600 transition">Videos</a></li>
-              <li><a href="/podcasts" className="hover:text-red-600 transition">Podcasts</a></li>
-              <li><a href="/environment" className="hover:text-red-600 transition">Environment</a></li>
-              <li><a href="/contact" className="hover:text-red-600 transition">Contact</a></li>
+              <li><Link href="/" className="hover:text-red-600 transition">{t('footer.home')}</Link></li>
+              <li><Link href="/videos" className="hover:text-red-600 transition">{t('footer.videos')}</Link></li>
+              <li><Link href="/podcasts" className="hover:text-red-600 transition">{t('footer.podcasts')}</Link></li>
+              <li><Link href="/environment" className="hover:text-red-600 transition">Environment</Link></li>
+              <li><Link href="/contact" className="hover:text-red-600 transition">{t('footer.contact')}</Link></li>
             </ul>
           </div>
           </ScrollAnimation>
@@ -54,13 +56,13 @@ export default function Footer() {
 <ScrollAnimation direction="up" delay={0.5}>
           {/* Categories */}
           <div>
-            <h3 className="text-lg font-bold text-white mb-4">Categories</h3>
+            <h3 className="text-lg font-bold text-white mb-4">{t('footer.categories')}</h3>
             <ul className="space-y-2 text-gray-300 text-sm">
-              <li><a href="/videos?category=Business" className="hover:text-red-600 transition">Business</a></li>
-              <li><a href="/videos?category=Technology" className="hover:text-red-600 transition">Technology</a></li>
-              <li><a href="/videos?category=Health" className="hover:text-red-600 transition">Health</a></li>
-              <li><a href="/videos?category=Sports" className="hover:text-red-600 transition">Sports</a></li>
-              <li><a href="/videos?category=Entertainment" className="hover:text-red-600 transition">Entertainment</a></li>
+              <li><a href="/videos?category=Business" className="hover:text-red-600 transition">{t('footer.business')}</a></li>
+              <li><a href="/videos?category=Technology" className="hover:text-red-600 transition">{t('footer.technology')}</a></li>
+              <li><a href="/videos?category=Health" className="hover:text-red-600 transition">{t('footer.health')}</a></li>
+              <li><a href="/videos?category=Sports" className="hover:text-red-600 transition">{t('footer.sports')}</a></li>
+              <li><a href="/videos?category=Entertainment" className="hover:text-red-600 transition">{t('footer.entertainment')}</a></li>
               <li><a href="/environment" className="hover:text-red-600 transition">Environment</a></li>
             </ul>
           </div>
@@ -72,16 +74,16 @@ export default function Footer() {
 <div className="space-y-4">
   {/* Section Title */}
   <h3 className="text-lg font-semibold text-white mb-4 border-b border-red-600 inline-block pb-1">
-    Contact
+    {t('footer.contactTitle')}
   </h3>
 
   {/* Contact Info */}
   <div className="space-y-2 text-sm">
     <p className="flex items-center gap-2 text-gray-300">
-      <span className="text-red-500">📧</span> info@daolassghag.com
+      <span className="text-red-500">📧</span> {t('footer.email')}
     </p>
     <p className="flex items-center gap-2 text-gray-300">
-      <span className="text-red-500">📞</span> +92 300 1234567
+      <span className="text-red-500">📞</span> {t('footer.phone')}
     </p>
   </div>
 
@@ -121,14 +123,14 @@ export default function Footer() {
   {/* Developer Credit */}
 <div className="pt-4 border-t border-gray-800 mt-4">
   <p className="text-sm text-gray-300 tracking-wide text-center">
-    Developed with <span className="text-red-500">♥</span> by{" "}
+    {t('footer.developedBy')} <span className="text-red-500">♥</span> by{" "}
     <a
       href="https://www.imadkhan.online"
       target="_blank"
       rel="noopener noreferrer"
       className="text-white font-semibold hover:text-red-400 transition-colors duration-300"
     >
-      Imad Hussain Khan
+      {t('footer.developerName')}
     </a>
   </p>
 </div>
@@ -142,7 +144,7 @@ export default function Footer() {
 <ScrollAnimation direction="up" delay={0.7}>
         {/* Bottom */}
         <div className="border-t border-gray-800 mt-8 pt-4 text-center text-white text-sm">
-          &copy; {new Date().getFullYear()} Da Olass Ghag. All rights reserved.
+          &copy; {new Date().getFullYear()} Da Olass Ghag. {t('footer.copyright')}
         </div>
         </ScrollAnimation>
       </ScrollAnimation>

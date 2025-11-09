@@ -1,0 +1,269 @@
+{
+  "navbar": {
+    "logotext1": "DA OLAS",
+    "logotext2": "GHAAG",
+    "logoAlt": "Aam Olas Logo",
+    "home": "HOME",
+    "news": "NEWS",
+    "liveTv": "LIVE TV",
+    "videos": "VIDEOS",
+    "more": "MORE",
+    "subscribe": "Subscribe",
+    "pakistan": "Pakistan",
+    "world": "World",
+    "business": "Business",
+    "technology": "Technology",
+    "health": "Health",
+    "climate": "Climate",
+    "sports": "Sports",
+    "entertainment": "Entertainment",
+    "factCheck": "Fact Check",
+    "aboutUs": "About Us",
+    "contact": "Contact",
+    "archives": "Archives",
+    "newsletter": "Newsletter",
+    "podcasts": "Podcasts"
+  },
+  "footer": {
+    "about": "Delivering the latest news, videos, and insights across business, technology, health, sports, and entertainment.",
+    "quickLinks": "Quick Links",
+    "home": "Home",
+    "videos": "Videos",
+    "podcasts": "Podcasts",
+    "environment": "Environment",
+    "contact": "Contact",
+    "categories": "Categories",
+    "business": "Business",
+    "technology": "Technology",
+    "health": "Health",
+    "sports": "Sports",
+    "entertainment": "Entertainment",
+    "contactTitle": "Contact",
+    "email": "info@daolassghag.com",
+    "phone": "+92 300 1234567",
+    "copyright": "All rights reserved.",
+    "developedBy": "Developed with ♥ by",
+    "developerName": "Imad Hussain Khan"
+  },
+  "languageSwitcher": {
+    "english": "English",
+    "urdu": "اردو"
+  },
+  "home": {
+    "breaking": "Breaking:",
+    "business": "Business",
+    "topStories": "Top Stories",
+    "readMore": "READ MORE",
+    "health": "Health",
+    "internationalNews": "International News",
+    "viewAllInternationalNews": "VIEW ALL INTERNATIONAL NEWS",
+    "latestNews": "Latest News",
+    "viewAllNews": "VIEW ALL NEWS",
+    "multimedia": "Multimedia",
+    "viewAllGalleries": "VIEW ALL GALLERIES",
+    "regionalNews": "Regional News (Khyber Pakhtunkhwa)",
+    "viewAllRegionalNews": "VIEW ALL REGIONAL NEWS",
+    "showbizEntertainment": "Showbiz & Entertainment",
+    "viewAllShowbizNews": "VIEW ALL SHOWBIZ NEWS",
+    "sportsNews": "Sports News",
+    "viewAllSportsNews": "VIEW ALL SPORTS NEWS",
+    "technology": "Technology",
+    "hoursAgo": "hours ago",
+    "minRead": "min read",
+    "updatedHoursAgo": "Updated hours ago",
+    "breakingHeadlines": [
+      "Khyber Pakhtunkhwa launches new education initiative",
+      "International trade talks ongoing in Geneva",
+      "Pakistan wins gold in South Asian Games"
+    ],
+    "businessNewsData": [
+      {
+        "title": "Stock market sees record gains",
+        "category": "BUSINESS"
+      },
+      {
+        "title": "New tax reforms announced",
+        "category": "BUSINESS"
+      },
+      {
+        "title": "Local startups attract investors",
+        "category": "BUSINESS"
+      },
+      {
+        "title": "Export growth fuels economy",
+        "category": "BUSINESS"
+      }
+    ],
+    "featuredNews": {
+      "title": "Economic reforms boost local businesses across KP",
+      "category": "ECONOMY",
+      "excerpt": "Khyber Pakhtunkhwa sees a steady economic upswing as new trade policies and small business incentives reshape local markets."
+    },
+    "sideNews": [
+      {
+        "title": "KP unveils digital governance system for transparency",
+        "category": "POLITICS"
+      },
+      {
+        "title": "Youth programs aim to reduce unemployment in Swat",
+        "category": "COMMUNITY"
+      },
+      {
+        "title": "Climate resilience projects begin in northern KP",
+        "category": "ENVIRONMENT"
+      },
+      {
+        "title": "Local artisans revive traditional crafts market",
+        "category": "CULTURE"
+      }
+    ],
+    "featuredStories": [
+      {
+        "title": "Economic reforms boost local businesses",
+        "category": "ECONOMY"
+      },
+      {
+        "title": "Climate change: KP farmers adapt to new methods",
+        "category": "ENVIRONMENT"
+      },
+      {
+        "title": "Tech startups emerging in Peshawar",
+        "category": "TECHNOLOGY"
+      }
+    ],
+    "healthNewsData": [
+      {
+        "title": "New vaccine rollout expands",
+        "category": "HEALTH"
+      },
+      {
+        "title": "Health ministry issues new guidelines",
+        "category": "HEALTH"
+      },
+      {
+        "title": "Mental health awareness campaigns gain traction",
+        "category": "HEALTH"
+      },
+      {
+        "title": "Global research on infectious diseases",
+        "category": "HEALTH"
+      }
+    ],
+    "internationalNewsData": [
+      {
+        "title": "UN holds climate summit with global leaders",
+        "category": "WORLD"
+      },
+      {
+        "title": "Economic sanctions impact trade in Asia-Pacific",
+        "category": "ECONOMY"
+      },
+      {
+        "title": "New technology agreements signed in Geneva",
+        "category": "TECHNOLOGY"
+      },
+      {
+        "title": "International humanitarian aid reaches conflict zones",
+        "category": "HUMANITARIAN"
+      }
+    ],
+    "latestNews": "Latest News",
+    "latestNewsData": [
+      {
+        "title": "Health ministry issues warning on dengue",
+        "category": "HEALTH"
+      },
+      {
+        "title": "Local elections: KP voter turnout rises",
+        "category": "PAKISTAN"
+      },
+      {
+        "title": "New IT park inaugurated in Islamabad",
+        "category": "TECHNOLOGY"
+      },
+      {
+        "title": "World leaders discuss climate policy",
+        "category": "WORLD"
+      }
+    ],
+    "multimediaData": [
+      {
+        "caption": "Life in the Northern Valleys"
+      },
+      {
+        "caption": "Elections 2025: Voices from the Ground"
+      },
+      {
+        "caption": "Emerging Tech: A New Wave in Pakistan"
+      }
+    ],
+    "regionalNewsData": [
+      {
+        "title": "KP launches renewable energy initiative",
+        "excerpt": "The government of Khyber Pakhtunkhwa has announced new solar power projects aimed at improving access to clean energy in rural areas."
+      },
+      {
+        "title": "Tourism on the rise in Swat Valley",
+        "excerpt": "Local tourism sees a major boost as new infrastructure and improved security attract both domestic and international travelers."
+      },
+      {
+        "title": "Education reforms target remote schools",
+        "excerpt": "The provincial education department introduces digital learning tools to enhance access for students in mountainous regions."
+      }
+    ],
+    "showbizNewsData": [
+      {
+        "title": "Pakistani film wins award at international festival",
+        "category": "FILM"
+      },
+      {
+        "title": "Top singer releases new album breaking records",
+        "category": "MUSIC"
+      },
+      {
+        "title": "Celebrity wedding draws media frenzy in Lahore",
+        "category": "CELEBRITY"
+      },
+      {
+        "title": "Fashion week highlights emerging designers in Pakistan",
+        "category": "FASHION"
+      }
+    ],
+    "sportsNewsData": [
+      {
+        "title": "Pakistan wins gold in South Asian Games",
+        "category": "SPORTS"
+      },
+      {
+        "title": "KP cricket team advances to national finals",
+        "category": "CRICKET"
+      },
+      {
+        "title": "Local football league attracts international scouts",
+        "category": "FOOTBALL"
+      },
+      {
+        "title": "Tennis star from Pakistan reaches semifinals",
+        "category": "TENNIS"
+      }
+    ],
+    "technologyNewsData": [
+      {
+        "title": "AI startups transform local industries",
+        "category": "TECHNOLOGY"
+      },
+      {
+        "title": "New smartphone launch breaks records",
+        "category": "TECHNOLOGY"
+      },
+      {
+        "title": "Cybersecurity concerns rising globally",
+        "category": "TECHNOLOGY"
+      },
+      {
+        "title": "Tech conferences resume post-pandemic",
+        "category": "TECHNOLOGY"
+      }
+    ]
+  }
+}

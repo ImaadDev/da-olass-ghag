@@ -1,26 +1,13 @@
 "use client";
 
 import ScrollBasedAnimation from "../ScrollBasedAnimation";
-
-const regionalArticles = [
-  {
-    title: "KP launches renewable energy initiative",
-    excerpt:
-      "The government of Khyber Pakhtunkhwa has announced new solar power projects aimed at improving access to clean energy in rural areas.",
-  },
-  {
-    title: "Tourism on the rise in Swat Valley",
-    excerpt:
-      "Local tourism sees a major boost as new infrastructure and improved security attract both domestic and international travelers.",
-  },
-  {
-    title: "Education reforms target remote schools",
-    excerpt:
-      "The provincial education department introduces digital learning tools to enhance access for students in mountainous regions.",
-  },
-];
+import { useTranslation } from "react-i18next";
 
 export default function RegionalNews() {
+  const { t } = useTranslation();
+
+  const regionalArticles = t("home.regionalNewsData", { returnObjects: true });
+
   return (
     <section className="max-w-7xl mx-auto px-8 py-16 md:py-24 border-t border-gray-100">
       {/* Section header */}
@@ -28,7 +15,7 @@ export default function RegionalNews() {
         <div className="flex items-center gap-4 mb-12">
           <div className="w-1 h-8 bg-black" />
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight uppercase">
-            Regional News (Khyber Pakhtunkhwa)
+            {t("home.regionalNews")}
           </h2>
         </div>
       </ScrollBasedAnimation>
@@ -50,7 +37,7 @@ export default function RegionalNews() {
                 {article.excerpt}
               </p>
               <div className="mt-4 text-xs font-mono text-gray-500">
-                Updated 3 hours ago
+                3 {t("home.updatedHoursAgo")}
               </div>
             </article>
           </ScrollBasedAnimation>
@@ -61,7 +48,7 @@ export default function RegionalNews() {
       <div className="mt-16 text-center">
         <ScrollBasedAnimation direction="up" delay={0.4}>
           <button className="border-2 border-black px-8 py-3 font-bold text-sm tracking-widest hover:bg-black hover:text-white transition-colors duration-300">
-            VIEW ALL REGIONAL NEWS
+            {t("home.viewAllRegionalNews")}
           </button>
         </ScrollBasedAnimation>
       </div>

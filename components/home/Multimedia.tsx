@@ -2,23 +2,21 @@
 
 import Image from "next/image";
 import ScrollBasedAnimation from "../ScrollBasedAnimation";
-
-const media = [
-  {
-    src: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=80",
-    caption: "Life in the Northern Valleys",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1200&q=80",
-    caption: "Elections 2025: Voices from the Ground",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=80",
-    caption: "Emerging Tech: A New Wave in Pakistan",
-  },
-];
+import { useTranslation } from "react-i18next";
 
 export default function Multimedia() {
+  const { t } = useTranslation();
+
+  const media = t("home.multimediaData", { returnObjects: true }) as Array<{
+    caption: string;
+  }>;
+
+  const images = [
+    "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=80",
+    "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1200&q=80",
+    "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=80",
+  ];
+
   return (
     <section className="max-w-7xl mx-auto px-8 py-16 md:py-24 border-t border-gray-100">
       {/* Section Header */}
@@ -26,7 +24,7 @@ export default function Multimedia() {
         <div className="flex items-center gap-4 mb-12">
           <div className="w-1 h-8 bg-black" />
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight uppercase">
-            Multimedia
+            {t("home.multimedia")}
           </h2>
         </div>
       </ScrollBasedAnimation>
@@ -42,7 +40,7 @@ export default function Multimedia() {
           >
             <div className="relative h-72 overflow-hidden cursor-pointer group">
               <Image
-                src={item.src}
+                src={images[idx]}
                 alt={item.caption}
                 fill
                 className="object-cover group-hover:scale-105 transition-transform duration-700"
@@ -63,7 +61,7 @@ export default function Multimedia() {
       <div className="mt-16 text-center">
         <ScrollBasedAnimation direction="up" delay={0.4}>
           <button className="border-2 border-black px-8 py-3 font-bold text-sm tracking-widest hover:bg-black hover:text-white transition-colors duration-300">
-            VIEW ALL GALLERIES
+            {t("home.viewAllGalleries")}
           </button>
         </ScrollBasedAnimation>
       </div>
